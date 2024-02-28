@@ -1,0 +1,811 @@
+{
+	"info": {
+		"_postman_id": "c282e542-3168-4cee-b978-968536b0f285",
+		"name": "Mike Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29394602"
+	},
+	"item": [
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "Create a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000 ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									"",
+									"pm.environment.set(\"bordID\", pm.response.json().id);",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"var expectedSchema = {",
+									"    \"type\": \"object\",",
+									"    \"required\": [",
+									"        \"id\",",
+									"        \"name\",",
+									"        \"desc\",",
+									"        \"descData\",",
+									"        \"closed\",",
+									"        \"idOrganization\",",
+									"        \"idEnterprise\",",
+									"        \"pinned\",",
+									"        \"url\",",
+									"        \"shortUrl\",",
+									"        \"prefs\",",
+									"        \"labelNames\",",
+									"        \"limits\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"id\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"name\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"desc\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"descData\": {",
+									"            \"type\": \"null\"",
+									"        },",
+									"        \"closed\": {",
+									"            \"type\": \"boolean\"",
+									"        },",
+									"        \"idOrganization\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"idEnterprise\": {",
+									"            \"type\": \"null\"",
+									"        },",
+									"        \"pinned\": {",
+									"            \"type\": \"boolean\"",
+									"        },",
+									"        \"url\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"shortUrl\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"prefs\": {",
+									"            \"type\": \"object\",",
+									"            \"required\": [",
+									"                \"permissionLevel\",",
+									"                \"hideVotes\",",
+									"                \"voting\",",
+									"                \"comments\",",
+									"                \"invitations\",",
+									"                \"selfJoin\",",
+									"                \"cardCovers\",",
+									"                \"isTemplate\",",
+									"                \"cardAging\",",
+									"                \"calendarFeedEnabled\",",
+									"                \"hiddenPluginBoardButtons\",",
+									"                \"switcherViews\",",
+									"                \"background\",",
+									"                \"backgroundColor\",",
+									"                \"backgroundImage\",",
+									"                \"backgroundTile\",",
+									"                \"backgroundBrightness\",",
+									"                \"backgroundImageScaled\",",
+									"                \"backgroundBottomColor\",",
+									"                \"backgroundTopColor\",",
+									"                \"canBePublic\",",
+									"                \"canBeEnterprise\",",
+									"                \"canBeOrg\",",
+									"                \"canBePrivate\",",
+									"                \"canInvite\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"permissionLevel\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"hideVotes\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"voting\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"comments\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"invitations\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"selfJoin\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"cardCovers\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"isTemplate\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"cardAging\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"calendarFeedEnabled\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"hiddenPluginBoardButtons\": {",
+									"                    \"type\": \"array\",",
+									"                    \"items\": {}",
+									"                },",
+									"                \"switcherViews\": {",
+									"                    \"type\": \"array\",",
+									"                    \"items\": {",
+									"                        \"type\": \"object\",",
+									"                        \"required\": [",
+									"                            \"viewType\",",
+									"                            \"enabled\"",
+									"                        ],",
+									"                        \"properties\": {",
+									"                            \"viewType\": {",
+									"                                \"type\": \"string\"",
+									"                            },",
+									"                            \"enabled\": {",
+									"                                \"type\": \"boolean\"",
+									"                            }",
+									"                        }",
+									"                    }",
+									"                },",
+									"                \"background\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"backgroundColor\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"backgroundImage\": {",
+									"                    \"type\": \"null\"",
+									"                },",
+									"                \"backgroundTile\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"backgroundBrightness\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"backgroundImageScaled\": {",
+									"                    \"type\": \"null\"",
+									"                },",
+									"                \"backgroundBottomColor\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"backgroundTopColor\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"canBePublic\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"canBeEnterprise\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"canBeOrg\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"canBePrivate\": {",
+									"                    \"type\": \"boolean\"",
+									"                },",
+									"                \"canInvite\": {",
+									"                    \"type\": \"boolean\"",
+									"                }",
+									"            }",
+									"        },",
+									"        \"labelNames\": {",
+									"            \"type\": \"object\",",
+									"            \"required\": [",
+									"                \"green\",",
+									"                \"yellow\",",
+									"                \"orange\",",
+									"                \"red\",",
+									"                \"purple\",",
+									"                \"blue\",",
+									"                \"sky\",",
+									"                \"lime\",",
+									"                \"pink\",",
+									"                \"black\",",
+									"                \"green_dark\",",
+									"                \"yellow_dark\",",
+									"                \"orange_dark\",",
+									"                \"red_dark\",",
+									"                \"purple_dark\",",
+									"                \"blue_dark\",",
+									"                \"sky_dark\",",
+									"                \"lime_dark\",",
+									"                \"pink_dark\",",
+									"                \"black_dark\",",
+									"                \"green_light\",",
+									"                \"yellow_light\",",
+									"                \"orange_light\",",
+									"                \"red_light\",",
+									"                \"purple_light\",",
+									"                \"blue_light\",",
+									"                \"sky_light\",",
+									"                \"lime_light\",",
+									"                \"pink_light\",",
+									"                \"black_light\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"green\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"yellow\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"orange\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"red\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"purple\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"blue\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"sky\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"lime\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"pink\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"black\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"green_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"yellow_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"orange_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"red_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"purple_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"blue_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"sky_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"lime_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"pink_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"black_dark\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"green_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"yellow_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"orange_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"red_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"purple_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"blue_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"sky_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"lime_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"pink_light\": {",
+									"                    \"type\": \"string\"",
+									"                },",
+									"                \"black_light\": {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            }",
+									"        },",
+									"        \"limits\": {",
+									"            \"type\": \"object\",",
+									"            \"required\": [],",
+									"            \"properties\": {}",
+									"        }",
+									"    }",
+									"}",
+									"pm.response.to.have.jsonSchema(expectedSchema);    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/boards/?name=MikeN&key={{key}}&token={{Token}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "MikeN"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"var expectedSchema = {",
+									"    \"type\": \"object\",",
+									"    \"required\": [",
+									"        \"id\",",
+									"        \"name\",",
+									"        \"closed\",",
+									"        \"idOrganization\",",
+									"        \"url\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"id\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"name\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"closed\": {",
+									"            \"type\": \"boolean\"",
+									"        },",
+									"        \"idOrganization\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"url\": {",
+									"            \"type\": \"string\"",
+									"        }",
+									"    }",
+									"}",
+									"pm.response.to.have.jsonSchema(expectedSchema);    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/boards/{{bordID}}?key={{key}}&token={{Token}}&fields=name,closed,idOrganization,url",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"boards",
+								"{{bordID}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								},
+								{
+									"key": "fields",
+									"value": "name,closed,idOrganization,url"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Required Fields Exist\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('closed');",
+									"    pm.expect(jsonData).to.have.property('url');",
+									"    pm.expect(jsonData).to.have.property('prefs');",
+									"});",
+									"",
+									"pm.test(\"Data Types are Correct\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.be.a('string');",
+									"    pm.expect(jsonData.name).to.be.a('string');",
+									"    pm.expect(jsonData.desc).to.be.a('string');",
+									"    pm.expect(jsonData.closed).to.be.a('boolean');",
+									"    pm.expect(jsonData.url).to.be.a('string');",
+									"    pm.expect(jsonData.prefs).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Nested Objects Exist\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.prefs).to.have.property('switcherViews');",
+									"    pm.expect(jsonData.prefs.switcherViews).to.be.an('array');",
+									"    pm.expect(jsonData.labelNames).to.be.an('object');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/boards/{{bordID}}?key={{key}}&token={{Token}}&name=M11111&closed=true",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"boards",
+								"{{bordID}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								},
+								{
+									"key": "name",
+									"value": "M11111"
+								},
+								{
+									"key": "closed",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000 ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"var expectedSchema = {",
+									"    \"type\": \"object\",",
+									"    \"required\": [",
+									"        \"_value\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"_value\": {",
+									"            \"type\": \"null\"",
+									"        }",
+									"    }",
+									"}",
+									"pm.response.to.have.jsonSchema(expectedSchema);    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/boards/{{bordID}}?key={{key}}&token={{Token}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"boards",
+								"{{bordID}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a board after delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([404]);",
+									"});",
+									"",
+									"pm.test(\"Body contains: The requested resource was not found\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"The requested resource was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/boards/{{bordID}}?key={{key}}&token={{Token}}&fields=name,closed,idOrganization,url",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"boards",
+								"{{bordID}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								},
+								{
+									"key": "fields",
+									"value": "name,closed,idOrganization,url"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Get a Member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"var expectedSchema = {",
+									"    \"type\": \"object\",",
+									"    \"required\": [",
+									"        \"id\",",
+									"        \"fullName\",",
+									"        \"memberType\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"id\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"fullName\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"memberType\": {",
+									"            \"type\": \"string\"",
+									"        }",
+									"    }",
+									"}",
+									"pm.response.to.have.jsonSchema(expectedSchema);    ",
+									"});",
+									"",
+									"pm.test(\"Body contains valid fullName\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.fullName).to.eql(\"Mike Nekrasov\");",
+									"});",
+									"",
+									"pm.test(\"Body contains substring: Mike\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Mike\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/members/{{userName}}?key={{key}}&token={{Token}}&fields=id,fullName,memberType",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"members",
+								"{{userName}}"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								},
+								{
+									"key": "fields",
+									"value": "id,fullName,memberType"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Boards that Member belongs to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful GET request\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"var expectedSchema = {",
+									"    \"type\": \"array\",",
+									"    \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"required\": [",
+									"            \"id\",",
+									"            \"name\",",
+									"            \"idMemberCreator\",",
+									"            \"idOrganization\"",
+									"        ],",
+									"        \"properties\": {",
+									"            \"id\": {",
+									"                \"type\": \"string\"",
+									"            },",
+									"            \"name\": {",
+									"                \"type\": \"string\"",
+									"            },",
+									"            \"idMemberCreator\": {",
+									"                \"type\": \"string\"",
+									"            },",
+									"            \"idOrganization\": {",
+									"                \"type\": \"string\"",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"pm.response.to.have.jsonSchema(expectedSchema);    ",
+									"});",
+									"",
+									"pm.test(\"Body contains valid name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[1].name).to.eql(\"M11111\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/members/{{userName}}/boards?key={{key}}&token={{Token}}&fields=id,name,idMemberCreator,idOrganization",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"members",
+								"{{userName}}",
+								"boards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{Token}}"
+								},
+								{
+									"key": "fields",
+									"value": "id,name,idMemberCreator,idOrganization"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
