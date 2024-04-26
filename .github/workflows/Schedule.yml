@@ -26,3 +26,9 @@ jobs:
       # Run postman collection
       - name: Run Postman Collection and Generate HTML Report
         run: 'newman run Trello.postman_collection.json -e "Trello.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export report.html'
+
+      - name: Publish test run results
+        uses: actions/upload-artifact@v4
+        with:
+          name: report.html
+          path: "*html"
