@@ -25,4 +25,4 @@ jobs:
 
       # Run postman collection
       - name: Run Postman Collection and Generate HTML Report
-        run: 'newman run Trello.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export report.html'
+        run: 'newman run Trello.postman_collection.json -e "Trello.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export report.html'
