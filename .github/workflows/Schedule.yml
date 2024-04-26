@@ -1,22 +1,28 @@
-name: Schedule pipeline
+name: Scheduled Run
 
 on:
-  schedule:
+ workflow_dispatch:
+ schedule:
     - cron: 30 00 * * 2-6
-  workflow_dispatch:
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-    steps:
-      - name: pull code
-        uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
 
-      # Runs a set of commands using the runners shell
+    steps:
+      # Check out the repo, so the job can access it.
+      - uses: actions/checkout@v4
+
+      # Install Node on the runner
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+
+      # Install newman globally, and install the html extra reporter
       - name: Install newman
         run: |
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      - name: Run Postman collections
-        run: newman run "Mike Trello.postman_collection.json" -e "Trello.postman_environment.json" -r cli,htmlextra --reporter-htmlextra-export Report.html
+      # Run postman collection
+      - name: Run Postman Collection and Generate HTML Report
+        run: 'newman run Trello.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export report.html'
