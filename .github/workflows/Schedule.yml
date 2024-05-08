@@ -43,7 +43,7 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          to:
+          to: mike.nekrasov82@gmail.com
           subject: Test Report
           from: GitHub Actions <actions@example.com>
           attachments: report.html
