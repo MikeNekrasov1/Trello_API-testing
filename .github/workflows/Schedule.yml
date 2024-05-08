@@ -28,7 +28,22 @@ jobs:
         run: 'newman run Trello.postman_collection.json -e "Trello.postman_environment.json" --reporters cli,htmlextra --reporter-htmlextra-export report.html'
 
       - name: Publish test run results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: report.html
           path: "*html"
+
+      - name: Send mail with report
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to:
+          subject: Test Report
+          from: GitHub Actions <actions@example.com>
+          attachments: report.html
